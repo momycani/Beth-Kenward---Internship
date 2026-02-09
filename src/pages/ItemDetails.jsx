@@ -17,12 +17,10 @@ const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [nftId]);
-
-  // Optional fallback if page is refreshed
+  
   useEffect(() => {
     if (item) return;
-
-    // OPTIONAL: only needed if you want refresh-safe pages
+    
     fetch(`/api/item-details?nftId=${nftId}`)
       .then(res => res.json())
       .then(setItem)
@@ -61,7 +59,6 @@ function getRandomDescription(id) {
   return LOREM_OPTIONS[index];
 }
 
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -70,8 +67,7 @@ function getRandomDescription(id) {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-
-              {/* Image */}
+              
               <div className="col-md-6 text-center">
                 <img
                   src={item.nftImage}
@@ -79,8 +75,7 @@ function getRandomDescription(id) {
                   alt={item.title}
                 />
               </div>
-
-              {/* Info */}
+             
               <div className="col-md-6">
                 <div className="item_info">
                   <h2>{item.title}</h2>
@@ -99,8 +94,7 @@ function getRandomDescription(id) {
                   <p>
                     {item.description ?? getRandomDescription(item.nftId)}                                          
                   </p>
-
-                  {/* Owner */}
+                 
                   <div className="d-flex flex-row">
                     <div className="mr40">
                       <h6>Owner</h6>
@@ -119,8 +113,7 @@ function getRandomDescription(id) {
                       </div>
                     </div>
                   </div>
-
-                  {/* Creator + Price */}
+                  
                   <div className="de_tab tab_simple">
                     <div className="de_tab_content">
                       <h6>Creator</h6>

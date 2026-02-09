@@ -54,13 +54,11 @@ function NewItems() {
   const [showSkeleton, setShowSkeleton] = useState(false);
   const [, forceTick] = useState(0);
 
-  // tick every second for countdown
   useEffect(() => {
     const interval = setInterval(() => forceTick((t) => t + 1), 1000);
     return () => clearInterval(interval);
   }, []);
-
-  // intersection observer
+ 
   useEffect(() => {
     const el = sectionRef.current;
 
@@ -82,16 +80,14 @@ function NewItems() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  // show skeleton for 3s
+  
   useEffect(() => {
     if (!inView) return;
     setShowSkeleton(true);
     const t = setTimeout(() => setShowSkeleton(false), 3000);
     return () => clearTimeout(t);
   }, [inView]);
-
-  // fetch items
+  
   useEffect(() => {
     if (!inView) return;
     if (collections.length > 0) return;
