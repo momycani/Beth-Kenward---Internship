@@ -179,4 +179,16 @@
     }
 }
 
+/* TOP SELLERS */
+
+.author_skeleton { display: flex; gap: 12px; align-items: center; }
+.skeleton-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #e6e6e6;
 }
+.skeleton-line {
+  height: 12px; width: 140px; border-radius: 6px;
+  background: #e6e6e6; margin: 6px 0;
+}
+.skeleton-line.short { width: 90px; }
+

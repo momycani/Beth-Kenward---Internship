@@ -116,43 +116,52 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {showSkeleton ? (
-          <Slider {...settings}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={`sk-${i}`}>
-                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                  <div className="nft_coll skeleton-card">
-                    <div className="nft_wrap">
-                      <div className="skeleton skeleton-img" />
-                    </div>
-                    <div className="nft_coll_info">
-                      <div className="skeleton skeleton-line title" />
-                      <div className="skeleton skeleton-line code" />
-                    </div>
+        {showSkeleton ? (
+        <Slider {...settings}>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={`sk-${i}`}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div className="nft_coll skeleton-card">
+                  <div className="nft_wrap">
+                    <div className="skeleton skeleton-img" />
+                  </div>
+                  <div className="nft_coll_info">
+                    <div className="skeleton skeleton-line title" />
+                    <div className="skeleton skeleton-line code" />
                   </div>
                 </div>
               </div>
-            ))}
-          </Slider>
-        ) : (
-          <Slider {...settings}>
-            {collections.map((item) => (
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <Slider {...settings}>
+          {collections.map((item) => {
+            const idForDetails = item.nftId ?? item.id;
+            const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
+
+            return (
               <div key={item.id}>
                 <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
+                      <Link
+                        to={`/item-details/${idForDetails ?? item.id}`}
+                        state={{ item } }
+                      >
                         <img src={item.nftImage} className="lazy img-fluid" alt={item.title} />
                       </Link>
                     </div>
+
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${item.authorId}`} state={{ item }}>
                         <img className="lazy pp-coll" src={item.authorImage} alt="author" />
                       </Link>
                       <i className="fa fa-check"></i>
                     </div>
+
                     <div className="nft_coll_info">
-                      <Link to="/explore">
+                      <Link to={`/item-details/${idForDetails}`} state={{ item }}>
                         <h4>{item.title}</h4>
                       </Link>
                       <span>ERC-{item.code}</span>
@@ -160,55 +169,14 @@ const HotCollections = () => {
                   </div>
                 </div>
               </div>
-            ))}
-          </Slider>
-        ) : (
-          <Slider {...settings}>
-            {collections.map((item) => {
-              const idForDetails = item.nftId ?? item.id;
-              const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
-
-              return (
-                <div key={item.id}>
-                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link
-                          to={`/item-details/${idForDetails ?? item.id}`}
-                          state={{ item } }
-                        >
-                          <img src={item.nftImage} className="lazy img-fluid" alt={item.title} />
-                        </Link>
-                      </div>
-
-                      <div className="nft_coll_pp">
-                        <Link to={`/author/${item.authorId}`} state={{ item }}>
-                          <img className="lazy pp-coll" src={item.authorImage} alt="author" />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
-
-                      <div className="nft_coll_info">
-                        <Link to={`/item-details/${idForDetails}`} state={{ item }}>
-                          <h4>{item.title}</h4>
-                        </Link>
-                        <span>ERC-{item.code}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </Slider>
-        )
-      }
+            );
+          })}
+        </Slider>
+      )}
         </div>
       </div>  
     </section>
     );
   };
-
-    )}
-
 
 export default HotCollections;
