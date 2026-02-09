@@ -24,3 +24,4 @@ const SkeletonLoading = ({ count = 4 }) => {
 };
 
 export default SkeletonLoading;
+

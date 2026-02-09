@@ -67,6 +67,7 @@
   border-color: lightgray !important;
 }
 
+/* HOT COLLECTION SKELETON LOADING */
 /* SKELETON LOADING */
 
 .skeleton {
@@ -125,6 +126,50 @@
   display: block !important;
 }
 
+/* NEW ITEMS SKELETON */
+.nft__item.skeleton { position: relative; }
+
+.sk-avatar{
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #e6e6e6;
+}
+
+.sk-pill{
+  width: 110px;
+  height: 32px;
+  border-radius: 999px;
+  background: #e6e6e6;
+  margin-left: auto;
+}
+
+.sk-image{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: #e6e6e6;
+}
+
+.sk-line{
+  height: 14px;
+  border-radius: 8px;
+  background: #e6e6e6;
+  margin-top: 10px;
+}
+
+.sk-title{ width: 60%; }
+.sk-price{ width: 35%; }
+
+.sk-like{
+  width: 60px;
+  height: 14px;
+  border-radius: 8px;
+  background: #e6e6e6;
+  margin-top: 10px;
+  margin-left: auto;
+}
+
 @keyframes shimmer {
     0% {
         transform: translateX(0);
@@ -132,4 +177,6 @@
     100% {
         transform: translateX(400%);
     }
+}
+
 }

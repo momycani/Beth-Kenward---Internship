@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./carousel.css";
+import { stableNumberFromId } from "../../utils/fakeData";
 
 
 const HOT_COLLECTIONS_URL = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
@@ -161,11 +162,51 @@ const HotCollections = () => {
               </div>
             ))}
           </Slider>
+        ) : (
+          <Slider {...settings}>
+            {collections.map((item) => {
+              const idForDetails = item.nftId ?? item.id;
+              const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
+
+              return (
+                <div key={item.id}>
+                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link
+                          to={`/item-details/${idForDetails ?? item.id}`}
+                          state={{ item } }
+                        >
+                          <img src={item.nftImage} className="lazy img-fluid" alt={item.title} />
+                        </Link>
+                      </div>
+
+                      <div className="nft_coll_pp">
+                        <Link to={`/author/${item.authorId}`} state={{ item }}>
+                          <img className="lazy pp-coll" src={item.authorImage} alt="author" />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+
+                      <div className="nft_coll_info">
+                        <Link to={`/item-details/${idForDetails}`} state={{ item }}>
+                          <h4>{item.title}</h4>
+                        </Link>
+                        <span>ERC-{item.code}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
         )
       }
         </div>
       </div>  
     </section>
+    );
+  };
 
     )}
 
