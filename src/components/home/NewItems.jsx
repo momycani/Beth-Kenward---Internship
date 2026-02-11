@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./carousel.css";
+import Countdown from "./Countdown";
 
 const NEW_ITEMS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
@@ -34,31 +35,13 @@ function NextArrow({ className, style, onClick }) {
   );
 }
 
-function getTimeRemaining(expiryDate) {
-  const diff = new Date(expiryDate).getTime() - Date.now();
-  if (diff <= 0) return "Expired";
-
-  const totalSeconds = Math.floor(diff / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return `${hours}h ${minutes}m ${seconds}s`;
-}
-
 function NewItems() {
   const sectionRef = useRef(null);
 
   const [inView, setInView] = useState(false);
   const [collections, setCollections] = useState([]);
   const [showSkeleton, setShowSkeleton] = useState(false);
-  const [, forceTick] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => forceTick((t) => t + 1), 1000);
-    return () => clearInterval(interval);
-  }, []);
- 
+    
   useEffect(() => {
     const el = sectionRef.current;
 
@@ -139,7 +122,7 @@ function NewItems() {
   ));
 
   const realSlides = collections.map((item) => (
-    <div key={item.id}>
+    <div key={item.nftId ?? item.id}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link to={`/author/${item.authorId}`}>
@@ -148,7 +131,8 @@ function NewItems() {
           </Link>
         </div>
 
-        <div className="de_countdown">{getTimeRemaining(item.expiryDate)}</div>
+        <div className="de_countdown"><Countdown expiryDate={item.expiryDate} />
+        </div>
 
         <div className="nft__item_wrap">
           <Link to={`/item-details/${item.nftId}`} state={{ item }}>
@@ -186,11 +170,23 @@ function NewItems() {
           </div>
 
           <div className="col-lg-12">
-            {showSkeleton ? (
-              <Slider {...settings}>{skeletonSlides}</Slider>
-            ) : (
-              <Slider {...settings}>{realSlides}</Slider>
-            )}
+            <Slider {...settings}>
+              {showSkeleton
+                ? Array.from({ length: 8 }).map((_, i) => (
+                    <div key={`sk-${i}`}>
+                      <div className="nft_coll skeleton-card">
+                        <div className="nft_wrap">
+                          <div className="skeleton skeleton-img" />
+                        </div>
+                        <div className="nft_coll_info">
+                          <div className="skeleton skeleton-line title" />
+                          <div className="skeleton skeleton-line code" />
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                : realSlides}
+            </Slider>
           </div>
         </div>
       </div>
