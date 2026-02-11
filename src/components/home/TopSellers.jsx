@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./carousel.css";
+import SkeletonLoading from "./SkeletonLoading";
 
 
 const TOP_SELLERS_URL = "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
@@ -57,20 +58,6 @@ const TopSellers = () => {
       .catch(console.error);
   }, [inView, collections.length]);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,    
-    responsive: [
-      { breakpoint: 990, settings: { slidesToShow: 3, slidesToScroll: 1 } },
-      { breakpoint: 745, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      { breakpoint: 470, settings: { slidesToShow: 1, slidesToScroll: 1 } },
-    ],
-  };
-
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -83,18 +70,14 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
               <ol className="author_list">
-                {showSkeleton ? new Array(12).fill(0).map((_, index) => (
-                      <li key={index} className="author_skeleton">
-                        <div className="author_list_pp">
-                          <div className="skeleton-avatar" />
-                        </div>
-                        <div className="author_list_info">
-                          <div className="skeleton-line short" />
-                          <div className="skeleton-line" />
-                        </div>
-                      </li>
-                    ))
-                  : collections.map((item, index) => (
+                {showSkeleton ? (
+                  <SkeletonLoading
+                    count={12}
+                    mode="list"
+                    type="seller"
+                  />
+                ) : (               
+                  collections.map((item, index) => (
                       <li key={item.id ?? item.authorName ?? index}>
                         <div className="author_list_pp">
                           <Link to="/author">
@@ -107,9 +90,8 @@ const TopSellers = () => {
                           <span>{item.price} ETH</span>
                         </div>
                       </li>
-                    ))}
-              </ol>
-        
+                    )))}
+              </ol>        
           </div>
         </div>
       </div>
