@@ -18,6 +18,10 @@ function SkeletonLoading({
     );
   }
 
+    if (mode === "details") {
+    return <ItemDetailsSkeleton />;
+  }
+
   if (mode === "author") {
   return (
     <div className="d_profile de-flex">
@@ -41,7 +45,6 @@ function SkeletonLoading({
     </div>
   );
 }
-
 
   let Card;
   if (type === "collection") Card = <CollectionCard />;
@@ -123,6 +126,23 @@ function SellerCard() {
   );
 }
 
+function ItemDetailsSkeleton() {
+  return (
+    <div className="row">
+      <div className="col-md-6">
+        <div className="skeleton sk-details-image" />
+      </div>
+
+      <div className="col-md-6">
+        <div className="skeleton sk-details-title" />
+        <div className="skeleton sk-details-stats" />
+        <div className="skeleton sk-details-paragraph" />
+        <div className="skeleton sk-details-owner" />
+        <div className="skeleton sk-details-creator" />
+        <div className="skeleton sk-details-price" />
+      </div>
+    </div>
+  );
+}
 
 export default SkeletonLoading;
-

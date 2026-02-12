@@ -62,8 +62,6 @@ const Author = () => {
       setIsFollowing(next);
       localStorage.setItem(`follow:${authorId}`, JSON.stringify({ isFollowing: next }));
     };
- 
-
 
   return (
     <div id="wrapper">
@@ -121,7 +119,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  {loading ? <SkeletonLoading count={8} /> : <AuthorItems authorId={author} />}
+                  {loading ? <SkeletonLoading count={8} /> : <AuthorItems />}
                 </div>
               </div>
             </div>
