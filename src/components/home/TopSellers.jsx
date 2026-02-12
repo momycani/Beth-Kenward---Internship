@@ -80,13 +80,15 @@ const TopSellers = () => {
                   collections.map((item, index) => (
                       <li key={item.id ?? item.authorName ?? index}>
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${item.authorId}`} state={{ item }}>
                             <img className="lazy pp-author" src={item.authorImage} alt={item.authorName} />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{item.authorName}</Link>
+                          <Link to={`/author/${item.authorId ?? item.id}`} state={{ item }}>
+                          {item.authorName}
+                          </Link>
                           <span>{item.price} ETH</span>
                         </div>
                       </li>

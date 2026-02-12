@@ -97,36 +97,12 @@ function NewItems() {
     ],
   };
 
-  const skeletonSlides = Array.from({ length: 8 }).map((_, i) => (
-    <div key={`sk-${i}`}>
-      <div className="nft__item skeleton">
-        <div className="author_list_pp">
-          <div className="sk-avatar" />
-        </div>
-
-        <div className="de_countdown">
-          <div className="sk-pill" />
-        </div>
-
-        <div className="nft__item_wrap">
-          <div className="sk-image" />
-        </div>
-
-        <div className="nft__item_info">
-          <div className="sk-line sk-title" />
-          <div className="sk-line sk-price" />
-          <div className="sk-like" />
-        </div>
-      </div>
-    </div>
-  ));
-
   const realSlides = collections.map((item) => (
     <div key={item.nftId ?? item.id}>
       <div className="nft__item">
         <div className="author_list_pp">
-          <Link to={`/author/${item.authorId}`}>
-            <img className="lazy" src={item.authorImage} alt="Author" />
+          <Link to={`/author/${item.authorId}`} state={{ item }}>
+            <img className="lazy" src={item.authorImage} alt="author" />
             <i className="fa fa-check" />
           </Link>
         </div>

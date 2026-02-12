@@ -90,12 +90,8 @@ const ExploreItems = () => {
             >
               <div className="nft__item">
                 <div className="author_list_pp">
-                  <Link to={`/author/${item.authorId}`}>
-                    <img
-                      className="lazy"
-                      src={item.authorImage}
-                      alt={item.authorName}
-                    />
+                  <Link to={`/author/${item.authorId}`} state={{ item }}>
+                    <img className="lazy" src={item.authorImage} alt={item.authorName} />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
