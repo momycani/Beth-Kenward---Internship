@@ -103,12 +103,6 @@ const HotCollections = () => {
     ],
   };
 
-const skeletonSlides = Array.from({ length: 8 }).map((_, i) => (
-  <div key={`sk-${i}`}>
-    <SkeletonLoading count={1} mode="slider" type="collection" />
-  </div>
-));
-
 const realSlides = collections.map((item) => {
   const idForDetails = item.nftId ?? item.id;
   const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
@@ -129,8 +123,8 @@ const realSlides = collections.map((item) => {
         <div className="nft_coll_pp">
           <Link to={`/author/${item.authorId}`} state={{ item }}>
             <img className="lazy pp-coll" src={item.authorImage} alt="author" />
-          </Link>
-          <i className="fa fa-check"></i>
+             <i className="fa fa-check"></i>
+          </Link>         
         </div>
 
         <div className="nft_coll_info">

@@ -18,6 +18,31 @@ function SkeletonLoading({
     );
   }
 
+  if (mode === "author") {
+  return (
+    <div className="d_profile de-flex">
+      <div className="de-flex-col">
+        <div className="profile_avatar">
+          <div className="skeleton sk-author-avatar" />
+          <div className="profile_name">
+            <div className="skeleton sk-author-name" />
+            <div className="skeleton sk-author-tag" />
+            <div className="skeleton sk-author-wallet" />
+          </div>
+        </div>
+      </div>
+
+      <div className="profile_follow de-flex">
+        <div className="de-flex-col">
+          <div className="skeleton sk-author-followers" />
+          <div className="skeleton sk-author-button" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
   let Card;
   if (type === "collection") Card = <CollectionCard />;
   else if (type === "seller") Card = <SellerCard />;
