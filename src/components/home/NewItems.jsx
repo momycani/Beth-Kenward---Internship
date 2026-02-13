@@ -67,7 +67,7 @@ function NewItems() {
   useEffect(() => {
     if (!inView) return;
     setShowSkeleton(true);
-    const t = setTimeout(() => setShowSkeleton(false), 3000);
+    const t = setTimeout(() => setShowSkeleton(false), 2000);
     return () => clearTimeout(t);
   }, [inView]);
   

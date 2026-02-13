@@ -23,7 +23,7 @@ const ExploreItems = () => {
 
   // Fetch once on mount + show skeleton for 3s
   useEffect(() => {
-    const t = setTimeout(() => setShowSkeleton(false), 3000);
+    const t = setTimeout(() => setShowSkeleton(false), 2000);
 
     fetch(EXPLORE_ITEMS_URL)
       .then((r) => r.json())
@@ -159,7 +159,7 @@ const ExploreItems = () => {
             <button
               type="button"
               id="loadmore"
-              className="btn-main lead"
+              className="btn-main lead" data-aos="fade-up" data-aos-delay="50" data-aos-duration="1000"
               onClick={() => setVisibleCount((c) => c + 4)}
             >
               Load more
