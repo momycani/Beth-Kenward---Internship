@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./carousel.css";
-import { stableNumberFromId } from "../../utils/fakeData";
 
 const HOT_COLLECTIONS_URL = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
@@ -103,8 +102,7 @@ const HotCollections = () => {
 
   const realSlides = collections.map((item) => {
   const idForDetails = item.nftId ?? item.id;
-  const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
-
+ 
   return (
     <div key={idForDetails ?? item.id}>
       <div className="nft_coll">

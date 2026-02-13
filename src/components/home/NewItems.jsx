@@ -14,8 +14,7 @@ function PrevArrow({ className, style, onClick }) {
       aria-label="Previous"
       className={className}
       onClick={onClick}
-      style={{ ...style }}
-    >
+      style={{ ...style }}>
       <span className="arrow-prev" aria-hidden="true">‹</span>
     </button>
   );
@@ -28,8 +27,7 @@ function NextArrow({ className, style, onClick }) {
       aria-label="Next"
       className={className}
       onClick={onClick}
-      style={{ ...style }}
-    >
+      style={{ ...style }}>
       <span className="arrow-next" aria-hidden="true">›</span>
     </button>
   );
