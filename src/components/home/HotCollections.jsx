@@ -70,7 +70,7 @@ const HotCollections = () => {
     if (!inView) return;
     
   setShowSkeleton(true);
-    const timerId = setTimeout(() => setShowSkeleton(false), 3000);
+    const timerId = setTimeout(() => setShowSkeleton(false), 2000);
 
     return () => clearTimeout(timerId);
   }, [inView]);
