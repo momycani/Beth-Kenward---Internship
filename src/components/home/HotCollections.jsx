@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./carousel.css";
 import { stableNumberFromId } from "../../utils/fakeData";
-import SkeletonLoading from "./SkeletonLoading";
-
 
 const HOT_COLLECTIONS_URL = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
@@ -103,7 +101,7 @@ const HotCollections = () => {
     ],
   };
 
-const realSlides = collections.map((item) => {
+  const realSlides = collections.map((item) => {
   const idForDetails = item.nftId ?? item.id;
   const likes = item.likes ?? stableNumberFromId(idForDetails, 10, 300);
 
@@ -111,7 +109,7 @@ const realSlides = collections.map((item) => {
     <div key={idForDetails ?? item.id}>
       <div className="nft_coll">
         <div className="nft_wrap">
-          <Link to={`/item-details/${idForDetails}`} state={{ item }}>
+          <Link to={`/item/${idForDetails}`} state={{ item }}>
             <img
               src={item.nftImage}
               className="lazy img-fluid"
@@ -128,7 +126,7 @@ const realSlides = collections.map((item) => {
         </div>
 
         <div className="nft_coll_info">
-          <Link to={`/item-details/${idForDetails}`} state={{ item }}>
+          <Link to={`/item/${idForDetails}`} state={{ item }}>
             <h4>{item.title}</h4>
           </Link>
           <span>ERC-{item.code}</span>          
@@ -171,9 +169,7 @@ const realSlides = collections.map((item) => {
               </div>
             </div>
           </section>
-        );
-
-           
+        );           
       };
 
 export default HotCollections;

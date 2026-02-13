@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author/:authorId" element={<Author />} />
-        <Route path="/item-details/:authorId" element={<ItemDetails />} />
+        <Route path="/item/:nftId" element={<ItemDetails />} />
         <Route path="*" element={<div style={{ padding: 24 }}>Page not found</div>} />
       </Routes>
       <Footer />  

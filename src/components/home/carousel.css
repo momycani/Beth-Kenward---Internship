@@ -318,4 +318,40 @@
   }
 }
 
+/* ITEM DETAILS */
 
+.sk-details-image {
+  width: 100%;
+  height: 450px;
+  border-radius: 12px;
+}
+
+.sk-details-title {
+  width: 70%;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.sk-details-stats {
+  width: 40%;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.sk-details-paragraph {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.sk-details-owner,
+.sk-details-creator {
+  width: 60%;
+  height: 50px;
+  margin-bottom: 16px;
+}
+
+.sk-details-price {
+  width: 30%;
+  height: 30px;
+}
